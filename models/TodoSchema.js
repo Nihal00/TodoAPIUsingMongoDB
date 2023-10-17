@@ -9,7 +9,7 @@ const Todo = new Schema({
     isCompleted: {
         type : Boolean,
         require: true,
-    },
+    }, 
     dateTime: {
         type: Date,
         require: true,

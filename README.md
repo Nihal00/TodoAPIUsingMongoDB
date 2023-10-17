@@ -46,6 +46,7 @@ MongoDB is built on scale-out archituture
 - findOneAndUpdate({ userName: abc }, { isCompleted: true })
 - findOneAndDelete({ })
 - findOne({ })
+- save()
 
 ### Todo Schema / Model
 - Title
