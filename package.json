@@ -1,0 +1,19 @@
+{
+  "name": "todo_api_using_mongo",
+  "version": "1.0.0",
+  "description": "- what is database and types of DB\r - structure of NOSQL and SQL DB\r - creating our first DB in MongoDB Atlas\r - MongoDB Compass \r - Different methods of MongoDB (Mongoose)\r - How Data is stored in DB\r - Start out Todo API Using MongoDB as DB",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nihal L Suvarna",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "mongoose": "^7.6.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
