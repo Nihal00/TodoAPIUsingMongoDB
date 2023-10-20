@@ -53,3 +53,36 @@ MongoDB is built on scale-out archituture
 - isCompleted
 - dateTime
 - userName
+
+## Middlewares
+- global middleware
+- specific middleware
+- Middleware has acess to req, res object of every api call(req, res, next())
+- Middleware are function that have access to the req, res object and next middleware present in the middleware stack
+
+### Tasks of Middleware
+- Excute the code
+- It can make changes to req and res cycle
+- To call the next middleware
+
+#### Logger Middleware
+
+
+### Authentication
+- Proving a user's identity, by proving their credentials so that they can access the resourse 
+- 2 types of Auth
+    - Basic Auth
+    - JWT Auth => JSON Web token 
+
+#### Basic Auth
+
+Sytax: - 'X-myWebsit' : Basic[ base64encoded(username:password) ]
+
+#### JWT Auth
+- JWT = JSON WEB TOKEN
+- JWT Auth allows information exchange between in client and server in JSON format. It Combines it with high security standards
+
+##### Parts of token
+- Headers => what tyoe if algo signature uses like SHA256 => base64 encoded
+- Payload => having a object and pass like user, userid, email other then password => base64 encoded
+- Signature => encrypted based on the algo defined in headers 
