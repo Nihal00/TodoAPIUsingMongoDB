@@ -4,6 +4,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const TodoSchema = require("./models/TodoSchema");
 const { LoggerMiddleware } = require("./middlewares/LoggerMiddleware");
+const { isAuth } = require("./middlewares/AuthMiddleware");
 const UserSchema = require("./models/UserSchema");
 require("dotenv").config();
 const app = express();
@@ -85,7 +86,7 @@ app.post("/login", async (req, res) => {
 });
 
 //POST => Create a Todo
-app.post("/todo", async (req, res) => {
+app.post("/todo", isAuth, async (req, res) => {
   const { title, isCompleted, username } = req.body;
 
   if (title.length === 0 || isCompleted === null || username.length === 0) {
@@ -117,11 +118,18 @@ app.post("/todo", async (req, res) => {
 });
 
 //GET => Get all todos for a username
-app.get("/todos/:username", async (req, res) => {
+// /todos/nihal?page=3
+app.get("/todos/:username", isAuth, async (req, res) => {
   const username = req.params.username;
+  const page = Number(req.query.page) || 1;
+  const LIMIT = 5;
+  let skipFrom = (Number(page) - 1) * LIMIT;
 
   try {
-    const todoList = await TodoSchema.find({ username }).sort({ dateTime: 1 });
+    const todoList = await TodoSchema.find({ username })
+      .sort({ dateTime: 1 })
+      .skip(skipFrom)
+      .limit(LIMIT);
 
     res.status(201).send({
       status: 201,
@@ -138,7 +146,7 @@ app.get("/todos/:username", async (req, res) => {
 });
 
 // GET => Get a single Todo
-app.get("/todo/:id", (req, res) => {
+app.get("/todo/:id", isAuth, (req, res) => {
   const todoId = req.params.id;
 
   TodoSchema.findById(todoId)
@@ -159,7 +167,7 @@ app.get("/todo/:id", (req, res) => {
 });
 
 //DELETE => Delete a todo based on ID
-app.delete("/todo/:id", async (req, res) => {
+app.delete("/todo/:id", isAuth, async (req, res) => {
   const todoId = req.params.id;
 
   try {
@@ -179,7 +187,7 @@ app.delete("/todo/:id", async (req, res) => {
 });
 
 //PATCH => Update a todo
-app.patch("/todo", async (req, res) => {
+app.patch("/todo", isAuth, async (req, res) => {
   const { todoId, title, isCompleted } = req.body;
 
   try {

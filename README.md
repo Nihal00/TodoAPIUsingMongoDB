@@ -86,3 +86,17 @@ Sytax: - 'X-myWebsit' : Basic[ base64encoded(username:password) ]
 - Headers => what tyoe if algo signature uses like SHA256 => base64 encoded
 - Payload => having a object and pass like user, userid, email other then password => base64 encoded
 - Signature => encrypted based on the algo defined in headers 
+
+
+##### Topics
+- Auth Middleware
+- Pagination, sorting
+- SQL, Struture
+- Data Types in SQL
+- Different Types of SQL Commond
+
+###### Pagination
+- Page infomation
+- We pass this throught query
+- Skip and Limit function
+- 
